@@ -21,9 +21,9 @@
             :key="col.id" 
             :class="{not_this_month: !isThisMonth(col._d)}" 
             v-for="col in row"
-            @mousedown="onMousedown"
+            @click="onMousedown"
           >
-            <i class="iconfont icon-close"></i>
+            <!-- <i class="iconfont icon-close"></i> -->
             <span class="dayLabel">
               {{col._d.getDate()}}
             </span>
@@ -31,6 +31,10 @@
           </li>
         </ol>
     </div>
+
+    <idialog :show.sync="showDialog">
+      <div></div>
+    </idialog>
   </div>
 </template>
 
@@ -43,7 +47,8 @@ export default {
       days: [],
       day: '',
       month: {},
-      weeks: ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
+      weeks: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
+      showDialog: false
     }
   },
   methods: {
@@ -54,10 +59,10 @@ export default {
       return false
     },
     onMousedown (e) {
-      this.$router.push({ name: 'ScheduleHome' })
-      // console.log(e)
+      this.showDialog = true
+      // this.$router.push({ name: 'ScheduleHome' })
     },
-    returnEvent(e) {
+    returnEvent (e) {
       this.$router.push({ name: 'Welcome' })
     }
   },
@@ -74,7 +79,7 @@ export default {
 }
 
 i.return {
-  font-size: 3em;
+  font-size: 2em;
   color: #999;
 }
 
@@ -84,22 +89,18 @@ span.dayLabel {
   right: 0.5em;
 }
 
-i.icon-close {
+/* i.icon-close {
   position: absolute;
   top: -0.5em;
   right: -0.5em;
   font-size: 5px;
-  background-color: #ffffff;
   z-index: 10001;
-}
+  display: none;
+} */
 
-i.icon-close:nth-child(7n) {
-  right: 1em !important;
-}
-
-i.icon-close:hover {
+/* i.icon-close:hover {
   color: #e51c23;
-}
+} */
 
 span.red {
   background-color: #e51c23;
@@ -141,6 +142,8 @@ span.green {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .calendar {
@@ -176,7 +179,7 @@ ol > li {
   border-right: 0.5px solid #c7c7cc;
   border-top: 0.5px solid #c7c7cc;
   position: relative;
-  transition: all 0.5s;
+  transition: box-shadow 0.3s;
 }
 
 .calendar > ol.days > li:nth-child(7n) {
@@ -184,7 +187,14 @@ ol > li {
 }
 
 .calendar > ol.days > li:hover:not(.not_this_month) {
-  background-color: #f5f5f5;
+  border: 0px;
+  -webkit-box-shadow: 5px 5px 5px 5px #dcdcdc;
+  box-shadow: 5px 5px 5px 5px #dcdcdc;
+  background:#ffc;
+}
+
+.calendar > ol.days > li:hover:not(.not_this_month) > i.icon-close {
+  display: block;
 }
 
 .not_this_month {
