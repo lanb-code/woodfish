@@ -186,12 +186,12 @@ ol > li {
   border-right: none;
 }
 
-.calendar > ol.days > li:hover:not(.not_this_month) {
+/* .calendar > ol.days > li:hover:not(.not_this_month) {
   border: 0px;
   -webkit-box-shadow: 5px 5px 5px 5px #dcdcdc;
   box-shadow: 5px 5px 5px 5px #dcdcdc;
   background:#ffc;
-}
+} */
 
 .calendar > ol.days > li:hover:not(.not_this_month) > i.icon-close {
   display: block;
