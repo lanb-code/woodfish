@@ -1,7 +1,8 @@
 <template>
-  <div class="page">
+  <v-touch class="page" @swipeleft="swipeleft" @swiperight="swiperight">
     <i class="iconfont icon-fanhui return" @click="returnEvent"></i>
     <ol class="toolBar">
+      <li>{{month.year}}-{{month.month + 1}}</li>
     </ol>
     <div class="calendar">
         <ol class="weeks">
@@ -35,7 +36,7 @@
     <idialog :show.sync="showDialog">
       <div></div>
     </idialog>
-  </div>
+  </v-touch>
 </template>
 
 <script>
@@ -48,7 +49,9 @@ export default {
       day: '',
       month: {},
       weeks: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
-      showDialog: false
+      showDialog: false,
+      currYear: 2018,
+      currMonth: 0
     }
   },
   methods: {
@@ -64,6 +67,25 @@ export default {
     },
     returnEvent (e) {
       this.$router.push({ name: 'Welcome' })
+    },
+    swipeleft (e) {
+      if (this.month.month + 1 < 12) {
+        this.month.month++
+      } else {
+        this.month.month = 0
+        this.month.year++
+      }
+      this.days = this.month.calendarWeeks()
+    },
+    swiperight (e) {
+      console.log(this.month.month)
+      if (this.month.month > 0) {
+        this.month.month--
+      } else {
+        this.month.month = 11
+        this.month.year--
+      }
+      this.days = this.month.calendarWeeks()
     }
   },
   created () {

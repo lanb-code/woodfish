@@ -7,6 +7,10 @@ import './register'
 
 Vue.config.productionTip = false
 
+// start mobile touch event
+var VueTouch = require('vue-touch')
+Vue.use(VueTouch, { name: 'v-touch' })
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
