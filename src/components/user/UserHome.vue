@@ -4,35 +4,34 @@
     <ol class="toolBar">
       <li>{{month.year}}-{{month.month + 1}}</li>
     </ol>
-    <div class="calendar">
-        <ol class="weeks">
-          <li
-            :key="week.id"
-            v-for="week in weeks"
+      <div class="calendar">
+          <ol class="weeks">
+            <li
+              :key="week.id"
+              v-for="week in weeks"
+            >
+              {{week}}
+            </li>
+          </ol>
+          <ol 
+            :key="row.id"
+            v-for="row in days"
+            class="days"
           >
-            {{week}}
-          </li>
-        </ol>
-        <ol 
-          :key="row.id"
-          v-for="row in days"
-          class="days"
-        >
-          <li 
-            :key="col.id" 
-            :class="{not_this_month: !isThisMonth(col._d)}" 
-            v-for="col in row"
-            @click="onMousedown"
-          >
-            <!-- <i class="iconfont icon-close"></i> -->
-            <span class="dayLabel">
-              {{col._d.getDate()}}
-            </span>
-            <span v-if="isToday(col._d)" class="red"></span>
-          </li>
-        </ol>
-    </div>
-
+            <li 
+              :key="col.id" 
+              :class="{not_this_month: !isThisMonth(col._d)}" 
+              v-for="col in row"
+              @click="onMousedown"
+            >
+              <!-- <i class="iconfont icon-close"></i> -->
+              <span class="dayLabel">
+                {{col._d.getDate()}}
+              </span>
+              <span v-if="isToday(col._d)" class="red"></span>
+            </li>
+          </ol>
+      </div>
     <idialog :show.sync="showDialog">
       <div></div>
     </idialog>
@@ -49,9 +48,7 @@ export default {
       day: '',
       month: {},
       weeks: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
-      showDialog: false,
-      currYear: 2018,
-      currMonth: 0
+      showDialog: false
     }
   },
   methods: {
@@ -78,7 +75,6 @@ export default {
       this.days = this.month.calendarWeeks()
     },
     swiperight (e) {
-      console.log(this.month.month)
       if (this.month.month > 0) {
         this.month.month--
       } else {

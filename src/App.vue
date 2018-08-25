@@ -14,4 +14,5 @@ export default {
 @import './assets/global.css';
 @import './assets/normalize.css';
 @import url(//at.alicdn.com/t/font_808513_ut2yhewrnu8.css);
+@import './assets/animate.min.css';
 </style>
