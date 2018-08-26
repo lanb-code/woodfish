@@ -194,12 +194,12 @@ span.green {
 
 ol {
   list-style: none;
+  padding: 0px;
+  margin: 0px;
 }
 
 .calendar ol {
   display: flex;
-  padding: 0px;
-  margin: 0px;
 }
 
 .calendar ol > li {
