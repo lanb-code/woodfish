@@ -97,8 +97,9 @@ a.start_btn:hover {
 }
 
 footer {
-  text-align: center;
   color: #adadad;
-  flex-shrink: 0;
+  width: 100%;
+  text-align: center;
+  margin-top: 50px;
 }
 </style>
