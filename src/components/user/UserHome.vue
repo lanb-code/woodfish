@@ -33,7 +33,13 @@
           </ol>
       </div>
     <idialog :show.sync="showDialog">
-      <div></div>
+      <ol>
+        <li>敲代码</li>
+        <li>敲代码</li>
+        <li>敲代码</li>
+        <li>敲代码</li>
+        <li>敲代码</li>
+      </ol>
     </idialog>
   </v-touch>
 </template>
@@ -98,7 +104,8 @@ export default {
 
 i.return {
   font-size: 2em;
-  color: #999;
+  color: #96bda8;
+  width: 1em;
 }
 
 span.dayLabel {
@@ -177,14 +184,20 @@ ol {
   margin: 0px;
 }
 
-ol > li {
+.calendar ol > li {
   width: 14.2857%;
   text-align: right;
+}
+
+ol.toolBar {
+  padding: 16px;
 }
 
 /* .calendar .weeks ol {} */
 .calendar ol.weeks li {
   padding: 0.5em 1em;
+  border-right: 0.5px solid #c7c7cc;
+  border-top: 0.5px solid #c7c7cc;
 }
 
 .calendar > ol.days {
