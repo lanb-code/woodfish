@@ -111,14 +111,14 @@ div.top_tip {
   line-height: 10vh;
   background-color: #96bda8;
   color: #ffffff;
+  flex-flow: row;
+  display: flex;
 }
 
-.top_tip span {
-  margin: 0 auto;
-}
+/* .top_tip span {} */
 
 i.return {
-  font-size: 1.5em;
+  font-size: 5vh;
   width: 1.5em;
   color: #ffffff;
 }
@@ -194,6 +194,9 @@ span.green {
 
 ol {
   list-style: none;
+}
+
+.calendar ol {
   display: flex;
   padding: 0px;
   margin: 0px;

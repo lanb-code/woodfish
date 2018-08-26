@@ -31,15 +31,15 @@ export default {
 </script>
 
 <style scoped>
-div.top_tip {
-  width: 100%;
-  height: 40px;
-  line-height: 40px;
-  background-color: #96bda8;
-}
-
 * {
   font-family: "PingFang SC", -apple-system, Roboto, "Microsoft YaHei";
+}
+
+div.top_tip {
+  width: 100%;
+  height: 10vh;
+  line-height: 10vh;
+  background-color: #96bda8;
 }
 
 p.big_title {
