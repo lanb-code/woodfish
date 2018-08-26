@@ -97,9 +97,15 @@ a.start_btn:hover {
 }
 
 footer {
-  color: #adadad;
+  /* color: #adadad;
   width: 100%;
   text-align: center;
-  margin-top: 50px;
+  margin-top: 50px; */
+
+  /* absolute */
+  color: #adadad;
+  bottom: 0px;
+  text-align: center;
+  width: 100%;
 }
 </style>

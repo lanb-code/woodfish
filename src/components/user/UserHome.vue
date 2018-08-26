@@ -1,9 +1,12 @@
 <template>
   <v-touch class="page" @swipeleft="swipeleft" @swiperight="swiperight">
-    <i class="iconfont icon-fanhui return" @click="returnEvent"></i>
-    <ol class="toolBar">
+    <div class="top_tip">
+      <i class="iconfont icon-fanhui return" @click="returnEvent"></i>
+      <span>{{month.year}}-{{month.month + 1}}</span>
+    </div>
+    <!-- <ol class="toolBar">
       <li>{{month.year}}-{{month.month + 1}}</li>
-    </ol>
+    </ol> -->
       <div class="calendar">
           <ol class="weeks">
             <li
@@ -102,10 +105,22 @@ export default {
   box-sizing: border-box;
 }
 
+div.top_tip {
+  width: 100%;
+  height: 10vh;
+  line-height: 10vh;
+  background-color: #96bda8;
+  color: #ffffff;
+}
+
+.top_tip span {
+  margin: 0 auto;
+}
+
 i.return {
-  font-size: 2em;
-  color: #96bda8;
-  width: 1em;
+  font-size: 1.5em;
+  width: 1.5em;
+  color: #ffffff;
 }
 
 span.dayLabel {
