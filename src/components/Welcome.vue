@@ -1,6 +1,6 @@
 <template>
-<div>
-    <div class="welcome">
+<div class="welcome">
+    <div class="main">
       <div class="top_tip">
         <!-- <router-link to="/user/home" class="open_btn">打开</router-link> -->
       </div>
@@ -93,19 +93,20 @@ a.start_btn:hover {
 }
 
 .welcome {
-  flex: 1 0 auto;
+  display: flex;
+  min-height: 100vh;
+  flex-flow: row wrap;
+}
+
+.main {
+  width: 100%;
+  align-self: flex-start;
 }
 
 footer {
-  /* color: #adadad;
   width: 100%;
-  text-align: center;
-  margin-top: 50px; */
-
-  /* absolute */
   color: #adadad;
-  bottom: 0px;
   text-align: center;
-  width: 100%;
+  align-self: flex-end;
 }
 </style>
