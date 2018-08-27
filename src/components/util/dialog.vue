@@ -71,7 +71,7 @@ export default {
 
 .dialog-inner {
   position: relative;
-  background: #f8f8f8;
+  background: #ffffff;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   -webkit-perspective: 1000px;
@@ -88,7 +88,7 @@ export default {
   bottom: 0;
   left: 0;
   z-index: 1009;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.6);
   opacity: 1;
   -webkit-animation-duration: 0.3s;
   animation-duration: 0.3s;

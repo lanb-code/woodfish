@@ -1,9 +1,11 @@
 <template>
   <div id="app">
-      <transition 
+      <!-- <transition 
         :enter-active-class="transitionName"
-      >
+      > -->
+      <transition :name="transitionName">
         <router-view 
+          class="router-view"
           :key="$route.params.id"
         />
       </transition>
@@ -15,7 +17,7 @@ export default {
   name: 'App',
   data () {
     return {
-      transitionName: 'animated slideInLeft'
+      transitionName: ''
     }
   },
   // dynamically set transition based on route change
@@ -23,7 +25,7 @@ export default {
     '$route' (to, from) {
       const toDepth = to.path.split('/').length
       const fromDepth = from.path.split('/').length
-      this.transitionName = toDepth < fromDepth ? 'animated slideInRight' : 'animated slideInLeft'
+      this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
     }
   }
 }
@@ -44,5 +46,44 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+}
+
+/*路由切换动画*/
+.slide-right-enter-active,
+.slide-right-leave-active,
+.slide-left-enter-active,
+.slide-left-leave-active {
+  will-change: transform;
+  transition: all 500ms;
+  position: absolute;
+}
+.slide-right-enter {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0);
+}
+.slide-right-leave-active {
+  opacity: 0;
+  transform: translate3d(100%, 0, 0);
+}
+.slide-left-enter {
+  opacity: 0;
+  transform: translate3d(100%, 0, 0);
+}
+.slide-left-leave-active {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0);
+}
+
+#app {
+  background-color: #96bda8;
+}
+
+.router-view {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  -webkit-overflow-scrolling: touch;
 }
 </style>
