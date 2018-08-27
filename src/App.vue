@@ -1,7 +1,11 @@
 <template>
   <div id="app">
-      <transition :enter-active-class="transitionName">
-        <router-view :key="$route.params.id" />
+      <transition 
+        :enter-active-class="transitionName"
+      >
+        <router-view 
+          :key="$route.params.id"
+        />
       </transition>
   </div>
 </template>

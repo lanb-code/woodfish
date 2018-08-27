@@ -32,6 +32,7 @@
               <span v-if="isToday(col._d)" class="red"></span>
             </li>
           </ol>
+          <div class="tip" @click="clickTip" v-if="isTip"></div>
       </v-touch>
         <idialog :show.sync="showDialog" :key="1">
           <ol :key="2">
@@ -55,7 +56,8 @@ export default {
       day: '',
       month: {},
       weeks: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
-      showDialog: false
+      showDialog: false,
+      isTip: true
     }
   },
   methods: {
@@ -89,6 +91,9 @@ export default {
         this.month.year--
       }
       this.days = this.month.calendarWeeks()
+    },
+    clickTip (e) {
+      this.isTip = false
     }
   },
   created () {
@@ -245,7 +250,7 @@ ol.toolBar {
   color: #c3c3c3;
 }
 
-.mask {
+.tip {
   position: fixed;
   top: 0;
   right: 0;
@@ -262,5 +267,11 @@ ol.toolBar {
   animation-fill-mode: forwards;
   -webkit-animation-name: amt-fade-in;
   animation-name: amt-fade-in;
+  background-repeat: no-repeat;
+  background-image: url(../../assets/tip.png);
+  background-size: 30% 20%;
+  background-position: center center;
+  text-align: center;
+  line-height: 100%;
 }
 </style>
