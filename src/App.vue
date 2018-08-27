@@ -1,12 +1,27 @@
 <template>
   <div id="app">
-    <router-view/>
+      <transition :enter-active-class="transitionName">
+        <router-view :key="$route.params.id" />
+      </transition>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data () {
+    return {
+      transitionName: 'animated slideInLeft'
+    }
+  },
+  // dynamically set transition based on route change
+  watch: {
+    '$route' (to, from) {
+      const toDepth = to.path.split('/').length
+      const fromDepth = from.path.split('/').length
+      this.transitionName = toDepth < fromDepth ? 'animated slideInRight' : 'animated slideInLeft'
+    }
+  }
 }
 </script>
 
@@ -18,12 +33,12 @@ export default {
 
 html {
   height: 100vh;
-  overflow:hidden
+  overflow: hidden;
 }
 body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow:hidden
+  overflow: hidden;
 }
 </style>
