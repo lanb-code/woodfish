@@ -1,13 +1,11 @@
 <template>
-  <v-touch class="page" @swipeleft="swipeleft" @swiperight="swiperight">
+  <div class="page">
     <div class="top_tip">
       <i class="iconfont icon-fanhui return" @click="returnEvent"></i>
       <span>{{month.year}}-{{month.month + 1}}</span>
+      <i class="iconfont icon-toggle" @click="onMousedown"></i>
     </div>
-    <!-- <ol class="toolBar">
-      <li>{{month.year}}-{{month.month + 1}}</li>
-    </ol> -->
-      <div class="calendar">
+      <v-touch @swipeleft="swipeleft" @swiperight="swiperight" class="calendar">
           <ol class="weeks">
             <li
               :key="week.id"
@@ -34,17 +32,17 @@
               <span v-if="isToday(col._d)" class="red"></span>
             </li>
           </ol>
-      </div>
-    <idialog :show.sync="showDialog">
-      <ol>
-        <li>敲代码</li>
-        <li>敲代码</li>
-        <li>敲代码</li>
-        <li>敲代码</li>
-        <li>敲代码</li>
-      </ol>
-    </idialog>
-  </v-touch>
+      </v-touch>
+        <idialog :show.sync="showDialog" :key="1">
+          <ol :key="2">
+            <li>敲代码</li>
+            <li>敲代码</li>
+            <li>敲代码</li>
+            <li>敲代码</li>
+            <li>敲代码</li>
+          </ol>
+        </idialog>
+  </div>
 </template>
 
 <script>
@@ -111,16 +109,27 @@ div.top_tip {
   line-height: 10vh;
   background-color: #96bda8;
   color: #ffffff;
-  flex-flow: row;
+  flex-flow: row wrap;
   display: flex;
 }
 
-/* .top_tip span {} */
-
-i.return {
-  font-size: 5vh;
+.top_tip i.icon-toggle {
+  font-size: 25px;
   width: 1.5em;
   color: #ffffff;
+}
+
+.top_tip span {
+  -webkit-flex: 1;
+  flex: 1;
+}
+
+.top_tip i.return {
+  font-size: 35px;
+  width: 1.5em;
+  color: #ffffff;
+  -webkit-flex: 1; /* Safari 6.1+ */
+  flex: 1;
 }
 
 span.dayLabel {
@@ -128,19 +137,6 @@ span.dayLabel {
   top: 0.5em;
   right: 0.5em;
 }
-
-/* i.icon-close {
-  position: absolute;
-  top: -0.5em;
-  right: -0.5em;
-  font-size: 5px;
-  z-index: 10001;
-  display: none;
-} */
-
-/* i.icon-close:hover {
-  color: #e51c23;
-} */
 
 span.red {
   background-color: #e51c23;
@@ -214,8 +210,7 @@ ol.toolBar {
 /* .calendar .weeks ol {} */
 .calendar ol.weeks li {
   padding: 0.5em 1em;
-  border-right: 0.5px solid #c7c7cc;
-  border-top: 0.5px solid #c7c7cc;
+  /* border-right: 0.5px solid #c7c7cc; */
 }
 
 .calendar > ol.days {
@@ -248,5 +243,24 @@ ol.toolBar {
 
 .not_this_month {
   color: #c3c3c3;
+}
+
+.mask {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1009;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 1;
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-timing-function: ease-out;
+  animation-timing-function: ease-out;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-name: amt-fade-in;
+  animation-name: amt-fade-in;
 }
 </style>

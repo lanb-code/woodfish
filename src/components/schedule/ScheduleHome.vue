@@ -1,5 +1,5 @@
 <template>
-  <div class="schedul">
+  <div class="schedule">
     <div v-if="isEmpty">
       <i class="iconfont icon-add"></i>
       <span class="tip">添加日程</span>
@@ -26,7 +26,7 @@ span.tip {
   font-size: 50px;
 }
 
-.schedul {
+.schedule {
   margin: 10px;
 }
 </style>
