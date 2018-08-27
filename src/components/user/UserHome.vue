@@ -1,10 +1,14 @@
 <template>
   <div class="page">
+
+    <!-- top tip -->
     <div class="top_tip">
       <i class="iconfont icon-fanhui return" @click="returnEvent"></i>
       <span>{{month.year}}-{{currMonth}}</span>
-      <i class="iconfont icon-toggle" @click="onMousedown"></i>
+      <i class="iconfont icon-toggle" @click="clickRightSide"></i>
     </div>
+
+      <!-- calendar content -->
       <v-touch @swipeleft="swipeleft" @swiperight="swiperight" class="calendar">
           <ol class="weeks">
             <li
@@ -14,6 +18,7 @@
               {{week}}
             </li>
           </ol>
+
           <ol 
             :key="row.id"
             v-for="row in days"
@@ -25,24 +30,29 @@
               v-for="col in row"
               @click="onMousedown"
             >
-              <!-- <i class="iconfont icon-close"></i> -->
               <span class="dayLabel">
                 {{col._d.getDate()}}
               </span>
               <span v-if="isToday(col._d)" class="red"></span>
             </li>
           </ol>
-          <div class="tip" @touchstart="clickTip" v-if="isTip"></div>
+
       </v-touch>
+
+      <!-- start tip -->
+      <div class="tip" @touchstart="clickTip" v-if="isTip"></div>
+
+        <!-- dialog -->
         <idialog :show.sync="showDialog" :key="1">
           <ol :key="2">
-            <li>敲代码</li>
-            <li>敲代码</li>
-            <li>敲代码</li>
-            <li>敲代码</li>
-            <li>敲代码</li>
+            <li><span class="red"></span>&nbsp;23:59:01 敲代码</li>
+            <li><span class="red"></span>&nbsp;23:59:01 敲代码</li>
+            <li><span class="orange"></span>&nbsp;23:59:01 敲代码</li>
+            <li><span class="orange"></span>&nbsp;23:59:01 敲代码</li>
+            <li><span class="green"></span>&nbsp;23:59:01 敲代码</li>
           </ol>
         </idialog>
+        <!-- <div :class="rightSide"></div> -->
   </div>
 </template>
 
@@ -57,11 +67,12 @@ export default {
       month: {},
       weeks: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
       showDialog: false,
-      isTip: true
+      isTip: true,
+      rightSide: { 'right_side': true, 'overlay': false }
     }
   },
   computed: {
-    currMonth: function() {
+    currMonth: function () {
       return this.month.month + 1
     }
   },
@@ -99,6 +110,10 @@ export default {
     },
     clickTip (e) {
       this.isTip = false
+    },
+    clickRightSide (e) {
+      this.rightSide.overlay = true
+      this.isTip = true
     }
   },
   created () {
@@ -151,37 +166,25 @@ span.dayLabel {
 span.red {
   background-color: #e51c23;
   border-radius: 50%;
-  width: 0.5em;
+  width: 10px;
   display: inline-block;
-  height: 0.5em;
-  line-height: 0.5em;
-  position: absolute;
-  top: 0.3em;
-  left: 0.3em;
+  height: 10px;
 }
 
 span.orange {
-  border-radius: 50%;
-  width: 0.5em;
-  display: inline-block;
-  height: 0.5em;
-  line-height: 0.5em;
   background-color: #ff9800;
-  position: absolute;
-  top: 0.5em;
-  left: 0.5em;
+  border-radius: 50%;
+  width: 10px;
+  display: inline-block;
+  height: 10px;
 }
 
 span.green {
-  border-radius: 50%;
-  width: 0.5em;
-  display: inline-block;
-  height: 0.5em;
-  line-height: 0.5em;
   background-color: #8bc34a;
-  position: absolute;
-  top: 0.5em;
-  left: 0.5em;
+  border-radius: 50%;
+  width: 10px;
+  display: inline-block;
+  height: 10px;
 }
 
 .page {
@@ -230,8 +233,8 @@ ol.toolBar {
 }
 
 .calendar > ol.days > li {
-  border-right: 0.5px solid #c7c7cc;
-  border-top: 0.5px solid #c7c7cc;
+  border-right: 1px solid #c7c7c7;
+  border-top: 1px solid #c7c7c7;
   position: relative;
   transition: box-shadow 0.3s;
 }
@@ -278,5 +281,21 @@ ol.toolBar {
   background-position: center center;
   text-align: center;
   line-height: 100%;
+}
+
+.right_side {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  width: 200px;
+  height: 100vh;
+  transition: transform 0.3s, -webkit-transform 0.3s;
+  transform: translateX(100%);
+  background-color: #ffffff;
+}
+
+.overlay {
+  -webkit-transform: translate(0);
+  transform: translate(0);
 }
 </style>
