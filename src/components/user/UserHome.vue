@@ -2,7 +2,7 @@
   <div class="page">
     <div class="top_tip">
       <i class="iconfont icon-fanhui return" @click="returnEvent"></i>
-      <span>{{month.year}}-{{month.month + 1}}</span>
+      <span>{{month.year}}-{{currMonth}}</span>
       <i class="iconfont icon-toggle" @click="onMousedown"></i>
     </div>
       <v-touch @swipeleft="swipeleft" @swiperight="swiperight" class="calendar">
@@ -32,7 +32,7 @@
               <span v-if="isToday(col._d)" class="red"></span>
             </li>
           </ol>
-          <div class="tip" @click="clickTip" v-if="isTip"></div>
+          <div class="tip" @touchstart="clickTip" v-if="isTip"></div>
       </v-touch>
         <idialog :show.sync="showDialog" :key="1">
           <ol :key="2">
@@ -58,6 +58,11 @@ export default {
       weeks: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
       showDialog: false,
       isTip: true
+    }
+  },
+  computed: {
+    currMonth: function() {
+      return this.month.month + 1
     }
   },
   methods: {
@@ -269,7 +274,7 @@ ol.toolBar {
   animation-name: amt-fade-in;
   background-repeat: no-repeat;
   background-image: url(../../assets/tip.png);
-  background-size: 30% 20%;
+  background-size: 110px 130px;
   background-position: center center;
   text-align: center;
   line-height: 100%;
