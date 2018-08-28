@@ -1,12 +1,9 @@
 <template>
 <div class="welcome">
     <div class="main">
-      <div class="top_tip">
-        <!-- <router-link to="/user/home" class="open_btn">打开</router-link> -->
-      </div>
+      <!-- <Top></Top> -->
       <p class="big_title">时间管理神器</p>
       <div class="logo"></div>
-        <!-- <router-link to="/user/home">用户入口</router-link> -->
       <p class="middle_title">
         科学管理时间
       </p>

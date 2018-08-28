@@ -1,15 +1,13 @@
 <template>
   <div class="page">
 
-    <!-- top tip -->
-    <div class="top_tip">
-      <i class="iconfont icon-fanhui return" @click="returnEvent"></i>
+    <Top>
       <span>{{month.year}}-{{currMonth}}</span>
-      <i class="iconfont icon-toggle" @click="clickRightSide"></i>
-    </div>
+    </Top>
 
       <!-- calendar content -->
       <v-touch @swipeleft="swipeleft" @swiperight="swiperight" class="calendar">
+        
           <ol class="weeks">
             <li
               :key="week.id"
@@ -43,8 +41,8 @@
       <div class="tip" @touchstart="clickTip" v-if="isTip"></div>
 
         <!-- dialog -->
-        <idialog :show.sync="showDialog" :key="1">
-          <ol :key="2">
+        <idialog :show.sync="showDialog">
+          <ol>
             <li><span class="red"></span>&nbsp;23:59:01 敲代码</li>
             <li><span class="red"></span>&nbsp;23:59:01 敲代码</li>
             <li><span class="orange"></span>&nbsp;23:59:01 敲代码</li>
@@ -84,11 +82,11 @@ export default {
       return false
     },
     onMousedown (e) {
-      this.showDialog = true
-      // this.$router.push({ name: 'ScheduleHome' })
+      // this.showDialog = true
+      this.$router.push({ name: 'ScheduleHome' })
     },
     returnEvent (e) {
-      this.$router.push({ name: 'Welcome' })
+      window.history.back()
     },
     swipeleft (e) {
       if (this.month.month + 1 < 12) {

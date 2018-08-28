@@ -1,10 +1,18 @@
 import Vue from 'vue'
 
 // auto register components
-const requireComponent = require.context('./components/util', true, /\.vue$/)
-requireComponent.keys().forEach(
+const requireComponentUtil = require.context('./components/util', true, /\.vue$/)
+requireComponentUtil.keys().forEach(
   (filePath) => {
-    let componentName = requireComponent(filePath).default.name
-    Vue.component(componentName, requireComponent(filePath).default)
+    let componentName = requireComponentUtil(filePath).default.name
+    Vue.component(componentName, requireComponentUtil(filePath).default)
+  }
+)
+
+const requireComponentCommon = require.context('./components/common', true, /\.vue$/)
+requireComponentCommon.keys().forEach(
+  (filePath) => {
+    let componentName = requireComponentCommon(filePath).default.name
+    Vue.component(componentName, requireComponentCommon(filePath).default)
   }
 )

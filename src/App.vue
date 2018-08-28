@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-      <!-- <transition 
-        :enter-active-class="transitionName"
-      > -->
       <transition :name="transitionName">
         <router-view 
           class="router-view"
@@ -48,7 +45,7 @@ body {
   overflow: hidden;
 }
 
-/*路由切换动画*/
+/* vue router switch animation*/
 .slide-right-enter-active,
 .slide-right-leave-active,
 .slide-left-enter-active,

@@ -1,10 +1,18 @@
 <template>
-  <div class="schedule">
-    <div v-if="isEmpty">
-      <i class="iconfont icon-add"></i>
-      <span class="tip">添加日程</span>
+
+  <div>
+
+    <Top></Top>
+
+    <div class="schedule">
+      <div class="schedule_add" v-if="isEmpty">
+        <i class="iconfont icon-add"></i>
+        <span class="tip">添加日程</span>
+      </div>
     </div>
+  
   </div>
+  
 </template>
 
 <script>
@@ -27,6 +35,11 @@ span.tip {
 }
 
 .schedule {
-  margin: 10px;
+  height: 90vh;
+  line-height: 90vh;
+}
+
+.schedule .schedule_add {
+  text-align: center;
 }
 </style>
