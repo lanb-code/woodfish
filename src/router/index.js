@@ -17,7 +17,7 @@ export default new Router({
       name: 'UserHome',
       component: UserHome
     }, {
-      path: '/schedule/home',
+      path: '/user/schedule/home',
       name: 'ScheduleHome',
       component: ScheduleHome
     }

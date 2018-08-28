@@ -1,6 +1,7 @@
 <template>
   <div class="page">
 
+    <!-- top -->
     <Top>
       <span>{{month.year}}-{{currMonth}}</span>
     </Top>
@@ -18,15 +19,15 @@
           </ol>
 
           <ol 
-            :key="row.id"
-            v-for="row in days"
+            :key="rowIndex"
+            v-for="(row, rowIndex) in days"
             class="days"
           >
             <li 
-              :key="col.id" 
-              :class="{not_this_month: !isThisMonth(col._d)}" 
-              v-for="col in row"
-              @click="onMousedown"
+              :key="colIndex" 
+              :class="{not_this_month: !isThisMonth(col._d), 'high': col.high, 'medium': col.medium, 'low': col.low}" 
+              v-for="(col, colIndex) in row"
+              @click="onMousedown(rowIndex, colIndex)"
             >
               <span class="dayLabel">
                 {{col._d.getDate()}}
@@ -38,7 +39,7 @@
       </v-touch>
 
       <!-- start tip -->
-      <div class="tip" @touchstart="clickTip" v-if="isTip"></div>
+      <div class="tip" @click="clickTip" v-if="isTip"></div>
 
         <!-- dialog -->
         <idialog :show.sync="showDialog">
@@ -50,14 +51,14 @@
             <li><span class="green"></span>&nbsp;23:59:01 敲代码</li>
           </ol>
         </idialog>
+
+        <!-- right side -->
         <v-touch @swiperight="rightSideSwiperight" :class="rightSide">
           
           <ol>
-            <li><span class="red"></span>&nbsp;23:59:01 敲代码</li>
-            <li><span class="red"></span>&nbsp;23:59:01 敲代码</li>
-            <li><span class="orange"></span>&nbsp;23:59:01 敲代码</li>
-            <li><span class="orange"></span>&nbsp;23:59:01 敲代码</li>
-            <li><span class="green"></span>&nbsp;23:59:01 敲代码</li>
+            <li v-for="col in rightSideData" :key="col.id">
+              <span :class="rightSideClass(col.level)"></span>
+              &nbsp;{{col.title}}</li>
           </ol>
 
         </v-touch>
@@ -67,6 +68,7 @@
 <script>
 import moment from 'moment'
 import Month from 'calendar-months'
+import axios from 'axios'
 export default {
   data () {
     return {
@@ -76,7 +78,14 @@ export default {
       weeks: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
       showDialog: false,
       isTip: true,
-      rightSide: { 'right_side': true, 'overlay': false }
+      rightSide: { 'right_side': true, 'overlay': false },
+      rightSideData: [
+        { level: 'high', title: '23:59:01 敲代码' },
+        { level: 'high', title: '23:59:01 敲代码' },
+        { level: 'medium', title: '23:59:01 敲代码' },
+        { level: 'medium', title: '23:59:01 敲代码' },
+        { level: 'low', title: '23:59:01 敲代码' }
+      ]
     }
   },
   computed: {
@@ -89,18 +98,21 @@ export default {
       return this.month.containsDay(moment(date))
     },
     isToday (date) {
-      return false
+      return date.toDateString() === new Date().toDateString()
     },
-    onMousedown (e) {
+    onMousedown (rowIndex, colIndex) {
       // this.showDialog = true
-      // this.$router.push({ name: 'ScheduleHome' })
-      this.rightSide.overlay = true
+      if (typeof this.days[rowIndex][colIndex].data !== 'undefined') {
+        this.rightSideData = this.days[rowIndex][colIndex].data
+        this.rightSide.overlay = true
+      } else {
+        this.$router.push({ name: 'ScheduleHome' })
+      }
     },
     returnEvent (e) {
       window.history.back()
     },
     swipeleft (e) {
-      console.log(e)
       if (this.month.month + 1 < 12) {
         this.month.month++
       } else {
@@ -108,6 +120,7 @@ export default {
         this.month.year++
       }
       this.days = this.month.calendarWeeks()
+      this.resetData()
     },
     swiperight (e) {
       if (this.month.month > 0) {
@@ -117,17 +130,56 @@ export default {
         this.month.year--
       }
       this.days = this.month.calendarWeeks()
+      this.resetData()
     },
     clickTip (e) {
       this.isTip = false
     },
-    rightSideSwiperight(e) {
+    rightSideSwiperight (e) {
       this.rightSide.overlay = false
+    },
+    getData () {
+      this.month = Month.create(moment())
+      this.days = this.month.calendarWeeks()
+      this.resetData()
+    },
+    rightSideClass (value) {
+      if (value === 'high')
+        return 'red'
+      if (value === 'medium')
+        return 'orange'
+      if (value === 'low')
+        return 'green'
+    },
+    resetData () {
+      for (let i = 0; i < this.days.length; i++) {
+        for (let j = 0; j < this.days[i].length; j++) {
+          let d = this.days[i][j]._d
+          if (parseInt(10 * Math.random()) / 2 == 0) {
+            this.days[i][j].high = true
+            this.days[i][j].data = [
+              { level: 'high', title: '23:59:01 敲代码' },
+              { level: 'high', title: '23:59:01 敲代码' },
+              { level: 'medium', title: '23:59:01 敲代码' },
+            ]
+          } else if ((parseInt(10 * Math.random()) / 2 == 0)) {
+            this.days[i][j].medium = true
+            this.days[i][j].data = [
+              { level: 'medium', title: '23:59:01 敲代码' },
+              { level: 'medium', title: '23:59:01 敲代码' },
+            ]
+          } else if ((parseInt(10 * Math.random()) / 2 == 0)) {
+            this.days[i][j].low = true
+            this.days[i][j].data = [
+              { level: 'low', title: '23:59:01 敲代码' }
+            ]
+          }
+        }
+      }
     }
   },
   created () {
-    this.month = Month.create(moment())
-    this.days = this.month.calendarWeeks()
+    this.getData()
   }
 }
 </script>
@@ -197,7 +249,7 @@ span.green {
 }
 
 .page {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
@@ -314,5 +366,20 @@ ol.toolBar {
   -webkit-transform: translate(0);
   transform: translate(0);
   box-shadow: 10px 10px 10px 10px grey;
+}
+
+.high {
+  background-color: #e51c23;
+  color: #ffffff;
+}
+
+.medium {
+  background-color: #ff9800;
+  color: #ffffff;
+}
+
+.low {
+  background-color: #8bc34a;
+  color: #ffffff;
 }
 </style>
