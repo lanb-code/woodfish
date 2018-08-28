@@ -85,10 +85,6 @@ a.start_btn {
   margin: 0 auto;
 }
 
-a.start_btn:hover {
-  background-color: #02bda8;
-}
-
 .welcome {
   display: flex;
   min-height: 100vh;

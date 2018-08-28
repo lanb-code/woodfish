@@ -50,7 +50,17 @@
             <li><span class="green"></span>&nbsp;23:59:01 敲代码</li>
           </ol>
         </idialog>
-        <!-- <div :class="rightSide"></div> -->
+        <v-touch @swiperight="rightSideSwiperight" :class="rightSide">
+          
+          <ol>
+            <li><span class="red"></span>&nbsp;23:59:01 敲代码</li>
+            <li><span class="red"></span>&nbsp;23:59:01 敲代码</li>
+            <li><span class="orange"></span>&nbsp;23:59:01 敲代码</li>
+            <li><span class="orange"></span>&nbsp;23:59:01 敲代码</li>
+            <li><span class="green"></span>&nbsp;23:59:01 敲代码</li>
+          </ol>
+
+        </v-touch>
   </div>
 </template>
 
@@ -83,12 +93,14 @@ export default {
     },
     onMousedown (e) {
       // this.showDialog = true
-      this.$router.push({ name: 'ScheduleHome' })
+      // this.$router.push({ name: 'ScheduleHome' })
+      this.rightSide.overlay = true
     },
     returnEvent (e) {
       window.history.back()
     },
     swipeleft (e) {
+      console.log(e)
       if (this.month.month + 1 < 12) {
         this.month.month++
       } else {
@@ -109,9 +121,8 @@ export default {
     clickTip (e) {
       this.isTip = false
     },
-    clickRightSide (e) {
-      this.rightSide.overlay = true
-      this.isTip = true
+    rightSideSwiperight(e) {
+      this.rightSide.overlay = false
     }
   },
   created () {
@@ -285,15 +296,23 @@ ol.toolBar {
   position: fixed;
   top: 0px;
   right: 0px;
-  width: 200px;
+  width: 50%;
   height: 100vh;
-  transition: transform 0.3s, -webkit-transform 0.3s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
   transform: translateX(100%);
   background-color: #ffffff;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
+.right_side ol {
+  align-self: center;
 }
 
 .overlay {
   -webkit-transform: translate(0);
   transform: translate(0);
+  box-shadow: 10px 10px 10px 10px grey;
 }
 </style>
