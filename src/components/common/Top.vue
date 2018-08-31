@@ -4,7 +4,7 @@
     <div class="top_tip">
       <i class="iconfont icon-fanhui return" @click="returnEvent"></i>
       <slot></slot>
-      <i class="iconfont icon-toggle"></i>
+      <i class="iconfont icon-toggle" @click="toggle"></i>
     </div>
 
 </template>
@@ -12,6 +12,12 @@
 <script>
 export default {
   name: 'Top',
+  props: {
+    toggle: {
+      type: Function,
+      default: function () { }
+    }
+  },
   data () {
     return {}
   },

@@ -2,7 +2,7 @@
   <div class="page">
 
     <!-- top -->
-    <Top>
+    <Top :toggle="toggle">
       <span>{{month.year}}-{{currMonth}}</span>
     </Top>
 
@@ -52,6 +52,9 @@
           </ol>
         </idialog>
 
+        <!-- actionsheet -->
+        <iactionsheet :show.sync="showActionSheet"></iactionsheet>
+
         <!-- right side -->
         <v-touch @swiperight="rightSideSwiperight" :class="rightSide">
           
@@ -85,7 +88,8 @@ export default {
         { level: 'medium', title: '23:59:01 敲代码' },
         { level: 'medium', title: '23:59:01 敲代码' },
         { level: 'low', title: '23:59:01 敲代码' }
-      ]
+      ],
+      showActionSheet: false
     }
   },
   computed: {
@@ -94,6 +98,9 @@ export default {
     }
   },
   methods: {
+    toggle () {
+      this.showActionSheet = !this.showActionSheet
+    },
     isThisMonth (date) {
       return this.month.containsDay(moment(date))
     },
