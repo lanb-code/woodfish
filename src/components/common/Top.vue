@@ -1,10 +1,10 @@
 <template>
 
-  <!-- top tip -->
-    <div class="top_tip">
-      <i class="iconfont icon-fanhui return" @click="returnEvent"></i>
+    <!-- top tip -->
+    <div class="top-tip">
+      <i class="iconfont icon-fanhui top-tip__return" @click="returnEvent"></i>
       <slot></slot>
-      <i class="iconfont icon-toggle" @click="toggle"></i>
+      <i class="iconfont icon-toggle top-tip__toggle" @click="toggle"></i>
     </div>
 
 </template>
@@ -35,32 +35,21 @@ export default {
 </script>
 
 <style scoped>
-div.top_tip {
+.top-tip {
   width: 100%;
-  height: 10vh;
-  line-height: 10vh;
+  height: 45px;
+  line-height: 45px;
   background-color: #96bda8;
   color: #ffffff;
-  flex-flow: row wrap;
   display: flex;
+  justify-content: space-between;
 }
 
-.top_tip i.icon-toggle {
-  font-size: 25px;
-  width: 1.5em;
-  color: #ffffff;
-}
-
-.top_tip span {
-  -webkit-flex: 1;
-  flex: 1;
-}
-
-.top_tip i.return {
+.top-tip__return {
   font-size: 35px;
-  width: 1.5em;
-  color: #ffffff;
-  -webkit-flex: 1; /* Safari 6.1+ */
-  flex: 1;
+}
+
+.top-tip__toggle {
+  font-size: 25px;
 }
 </style>

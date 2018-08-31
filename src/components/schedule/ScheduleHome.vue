@@ -27,19 +27,17 @@ export default {
 
 <style scoped>
 i.icon-add {
-  font-size: 50px;
+  font-size: 35px;
 }
 
 span.tip {
-  font-size: 50px;
+  font-size: 35px;
 }
 
 .schedule {
-  height: 90vh;
-  line-height: 90vh;
+  height: 100vh;
 }
 
 .schedule .schedule_add {
-  text-align: center;
 }
 </style>

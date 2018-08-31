@@ -39,7 +39,7 @@
       </v-touch>
 
       <!-- start tip -->
-      <div class="tip" @click="clickTip" v-if="isTip"></div>
+      <!-- <div class="tip" @click="clickTip" v-if="isTip"></div> -->
 
         <!-- dialog -->
         <idialog :show.sync="showDialog">
@@ -65,6 +65,8 @@
           </ol>
 
         </v-touch>
+
+        <div v-if="showSideMask" class="side__mask"></div>
   </div>
 </template>
 
@@ -89,7 +91,8 @@ export default {
         { level: 'medium', title: '23:59:01 敲代码' },
         { level: 'low', title: '23:59:01 敲代码' }
       ],
-      showActionSheet: false
+      showActionSheet: false,
+      showSideMask: false
     }
   },
   computed: {
@@ -112,6 +115,7 @@ export default {
       if (typeof this.days[rowIndex][colIndex].data !== 'undefined') {
         this.rightSideData = this.days[rowIndex][colIndex].data
         this.rightSide.overlay = true
+        this.showSideMask = true
       } else {
         this.$router.push({ name: 'ScheduleHome' })
       }
@@ -144,6 +148,7 @@ export default {
     },
     rightSideSwiperight (e) {
       this.rightSide.overlay = false
+      this.showSideMask = false
     },
     getData () {
       this.month = Month.create(moment())
@@ -194,35 +199,6 @@ export default {
 <style scoped>
 * {
   box-sizing: border-box;
-}
-
-div.top_tip {
-  width: 100%;
-  height: 10vh;
-  line-height: 10vh;
-  background-color: #96bda8;
-  color: #ffffff;
-  flex-flow: row wrap;
-  display: flex;
-}
-
-.top_tip i.icon-toggle {
-  font-size: 25px;
-  width: 1.5em;
-  color: #ffffff;
-}
-
-.top_tip span {
-  -webkit-flex: 1;
-  flex: 1;
-}
-
-.top_tip i.return {
-  font-size: 35px;
-  width: 1.5em;
-  color: #ffffff;
-  -webkit-flex: 1; /* Safari 6.1+ */
-  flex: 1;
 }
 
 span.dayLabel {
@@ -373,6 +349,7 @@ ol.toolBar {
   -webkit-transform: translate(0);
   transform: translate(0);
   box-shadow: 10px 10px 10px 10px grey;
+  z-index: 1001;
 }
 
 .high {
@@ -388,5 +365,17 @@ ol.toolBar {
 .low {
   background-color: #8bc34a;
   color: #ffffff;
+}
+
+.side__mask {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 1;
+  transition: all 0.5s;
 }
 </style>
