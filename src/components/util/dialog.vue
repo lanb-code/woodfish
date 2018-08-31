@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="dialog">
-      <div v-if="show" class="dialog-inner">
+      <div v-if="show" class="dialog__inner">
         <slot></slot>
       </div>
     </div>
-    <div v-if="show" @click="click" class="mask"></div>
+    <div v-if="show" @click="click" class="dialog__mask"></div>
   </div>
 </template>
 
@@ -69,7 +69,7 @@ export default {
   transform: translate3d(-50%, -50%, 0);
 }
 
-.dialog-inner {
+.dialog__inner {
   position: relative;
   background: #ffffff;
   -webkit-backface-visibility: hidden;
@@ -81,7 +81,7 @@ export default {
   padding: 16px;
 }
 
-.mask {
+.dialog__mask {
   position: fixed;
   top: 0;
   right: 0;

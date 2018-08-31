@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div :class="{ 'actionsheet__mask': show }" @click="click"></div>
-    <div :class="{ 'actionsheet': true, 'actionsheet--run': show }"></div>
+    <div :class="{ 'action-sheet__mask': show }" @click="click"></div>
+    <div :class="{ 'action-sheet': true, 'action-sheet--run': show }"></div>
   </div>
 </template>
 
@@ -26,19 +26,7 @@ export default {
 </script>
 
 <style scoped>
-.actionsheet__mask {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1000;
-  background: rgba(0, 0, 0, 0.6);
-  opacity: 1;
-  transition: all 0.5s;
-}
-
-.actionsheet {
+.action-sheet {
   position: fixed;
   bottom: 0px;
   left: 0px;
@@ -49,9 +37,21 @@ export default {
   transform: translateY(100%);
 }
 
-.actionsheet--run {
+.action-sheet--run {
   -webkit-transform: translate(0);
   transform: translate(0);
   z-index: 1001;
+}
+
+.action-sheet__mask {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 1;
+  transition: all 0.5s;
 }
 </style>
