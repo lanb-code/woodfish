@@ -35,14 +35,16 @@ export default {
   width: 100%;
   height: 200px;
   background-color: #ffffff;
-  transition: transform 0.3s, -webkit-transform 0.3s;
+  transition: all 0.5s;
   transform: translateY(100%);
+  opacity: 0.5;
 }
 
 .action-sheet--run {
   -webkit-transform: translate(0);
   transform: translate(0);
   z-index: 1001;
+  opacity: 1;
 }
 
 .action-sheet__mask {
@@ -54,6 +56,6 @@ export default {
   z-index: 1000;
   background: rgba(0, 0, 0, 0.6);
   opacity: 1;
-  transition: all 0.5s;
+  transition: all 0.3s;
 }
 </style>
