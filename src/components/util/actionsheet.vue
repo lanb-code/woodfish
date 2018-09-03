@@ -1,7 +1,9 @@
 <template>
   <div>
     <div :class="{ 'action-sheet__mask': show }" @click="click"></div>
-    <div :class="{ 'action-sheet': true, 'action-sheet--run': show }"></div>
+    <div :class="{ 'action-sheet': true, 'action-sheet--run': show }">
+      <slot></slot>
+    </div>
   </div>
 </template>
 

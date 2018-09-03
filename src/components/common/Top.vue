@@ -1,11 +1,24 @@
 <template>
 
-    <!-- top tip -->
-    <div class="top-tip">
-      <i class="iconfont icon-fanhui top-tip__return" @click="returnEvent"></i>
-      <slot></slot>
-      <i class="iconfont icon-toggle top-tip__toggle" @click="toggle"></i>
+<div>
+  
+  <!-- top tip -->
+  <div class="top-tip">
+    <i class="iconfont icon-fanhui top-tip__return" @click="returnEvent"></i>
+    <slot></slot>
+    <i class="iconfont icon-toggle top-tip__toggle" @click="toggle"></i>
+  </div>
+
+  <!-- actionsheet -->
+  <iactionsheet :show.sync="showActionSheet">
+    <div class="center">
+      <h2 >关于woodfish</h2>
+      <p>时间管理工具神器</p>
+      <p>作者: colodoo</p>
     </div>
+  </iactionsheet>
+
+</div>
 
 </template>
 
@@ -13,13 +26,16 @@
 export default {
   name: 'Top',
   props: {
-    toggle: {
-      type: Function,
-      default: function () { }
-    }
+    // toggle: {
+    //   type: Function,
+    //   default: function () { }
+    // }
   },
   data () {
-    return {}
+    return {
+      showActionSheet: false,
+      showSideMask: false
+    }
   },
   computed: {
     currMonth: function () {
@@ -29,6 +45,9 @@ export default {
   methods: {
     returnEvent (e) {
       window.history.back()
+    },
+    toggle () {
+      this.showActionSheet = !this.showActionSheet
     },
   }
 }

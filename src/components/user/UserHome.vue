@@ -52,9 +52,6 @@
           </ol>
         </idialog>
 
-        <!-- actionsheet -->
-        <iactionsheet :show.sync="showActionSheet"></iactionsheet>
-
         <!-- right side -->
         <v-touch @swiperight="rightSideSwiperight" :class="rightSide">
           
