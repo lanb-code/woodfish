@@ -12,8 +12,8 @@
   <!-- actionsheet -->
   <iactionsheet :show.sync="showActionSheet">
     <div class="center">
-      <h2 >关于woodfish</h2>
-      <p>时间管理工具神器</p>
+      <h2>woodfish</h2>
+      <div class="logo"></div>
       <p>作者: colodoo</p>
     </div>
   </iactionsheet>
@@ -70,5 +70,19 @@ export default {
 
 .top-tip__toggle {
   font-size: 25px;
+}
+
+.logo {
+  border: 5px solid #ede9e6;
+  border-radius: 50%;
+  width: 10vh;
+  height: 10vh;
+  margin: 0 auto;
+  background-image: url(../../assets/logo.png);
+  background-size: 100% 100%;
+}
+
+p {
+  color: gray;
 }
 </style>
