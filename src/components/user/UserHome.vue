@@ -205,7 +205,7 @@ span.dayLabel {
 }
 
 span.red {
-  background-color: #e51c23;
+  background-color: #f74c31;
   border-radius: 50%;
   width: 10px;
   display: inline-block;
@@ -274,8 +274,8 @@ ol.toolBar {
 }
 
 .calendar > ol.days > li {
-  border-right: 1px solid #c7c7c7;
-  border-top: 1px solid #c7c7c7;
+  border-right: 1px solid #ede9e6;
+  border-top: 1px solid #ede9e6;
   position: relative;
   transition: box-shadow 0.3s;
 }
@@ -350,7 +350,7 @@ ol.toolBar {
 }
 
 .high {
-  background-color: #e51c23;
+  background-color: #f74c31;
   color: #ffffff;
 }
 
