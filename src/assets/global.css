@@ -60,3 +60,10 @@ a {
 .center {
   text-align: center;
 }
+
+input,
+button,
+select,
+textarea {
+  outline: none;
+}
