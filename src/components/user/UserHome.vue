@@ -204,30 +204,6 @@ span.dayLabel {
   right: 0.5em;
 }
 
-span.red {
-  background-color: #f74c31;
-  border-radius: 50%;
-  width: 10px;
-  display: inline-block;
-  height: 10px;
-}
-
-span.orange {
-  background-color: #ff9800;
-  border-radius: 50%;
-  width: 10px;
-  display: inline-block;
-  height: 10px;
-}
-
-span.green {
-  background-color: #8bc34a;
-  border-radius: 50%;
-  width: 10px;
-  display: inline-block;
-  height: 10px;
-}
-
 .page {
   height: 100vh;
   display: flex;
@@ -240,12 +216,6 @@ span.green {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-}
-
-ol {
-  list-style: none;
-  padding: 0px;
-  margin: 0px;
 }
 
 .calendar ol {

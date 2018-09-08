@@ -14,33 +14,46 @@
 
       <div class="form">
         <div class="form__item">
-          <lable>标题</lable>
-          <input type="text" placeholder="请输入标题"/>
+          <label>标题</label>
+          <input type="text" placeholder="请输入标题" v-model="title"/>
         </div>
 
         <div class="form__item">
-          <lable>日期</lable>
-          <input type="text" placeholder="请输入日期"/>
+          <label>日期</label>
+          <input type="text" placeholder="请输入日期" v-model="date" />
         </div>
 
         <div class="form__item">
-          <lable>内容</lable>
-          <textarea placeholder="请输入内容"></textarea>
+          <label>内容</label>
+          <textarea placeholder="请输入内容" v-model="content"></textarea>
         </div>
 
         <div class="form__item">
-          <lable>重要程度</lable>
-          <select>
-            <option>一般</option>
-            <option>紧急</option>
-            <option>重要</option>
+          <label>重要程度</label>
+          <select v-model="level">
+            <option value="1">一般</option>
+            <option value="2">紧急</option>
+            <option value="3">重要</option>
           </select>
+        </div>
+
+        <div class="form__item">
+          <label></label>
+          <input type="button" @click="click" value="提交" />
         </div>
 
       </div>
 
     </div>
-  
+
+    <idialog :show.sync="show">
+      <ol>
+        <li>
+          <span class="red"></span>&nbsp;{{date}}&nbsp;{{title}}
+        </li>
+      </ol>
+    </idialog>
+
   </div>
   
 </template>
@@ -49,7 +62,17 @@
 export default {
   data () {
     return {
-      isEmpty: true
+      isEmpty: true,
+      show: false,
+      title: '',
+      date: '',
+      content: '',
+      level: '1'
+    }
+  },
+  methods: {
+    click () {
+      this.show = true
     }
   }
 }
@@ -76,7 +99,7 @@ span.tip {
   margin-bottom: 16px;
 }
 
-.form__item lable {
+.form__item label {
   float: left;
   display: block;
   padding: 9px 15px;
@@ -92,6 +115,17 @@ span.tip {
   border: 1px solid #e6e6e6;
   transition: all 0.3s;
   border-radius: 2px;
+}
+
+.form__item input[type="button"],
+.form__item input[type="submit"] {
+  background-color: #ffffff;
+}
+
+.form__item input[type="button"]:hover,
+.form__item input[type="submit"]:hover {
+  background-color: #96bda8;
+  color: #ffffff;
 }
 
 .form__item textarea {
