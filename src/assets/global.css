@@ -74,6 +74,34 @@ ol {
   margin: 0px;
 }
 
+/* 美化相关 */
+
+::-webkit-input-placeholder {
+  font-size: 14px;
+  /* WebKit browsers */
+  color: #999;
+}
+
+:-moz-placeholder {
+  font-size: 14px;
+  /* Mozilla Firefox 4 to 18 */
+  color: #999;
+}
+
+::-moz-placeholder {
+  font-size: 14px;
+  /* Mozilla Firefox 19+ */
+  color: #999;
+}
+
+:-ms-input-placeholder {
+  font-size: 14px;
+  /* Internet Explorer 10+ */
+  color: #999;
+}
+
+/* 美化相关 */
+
 /* 业务 */
 
 span.red {

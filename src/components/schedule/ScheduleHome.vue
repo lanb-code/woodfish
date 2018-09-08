@@ -20,7 +20,8 @@
 
         <div class="form__item">
           <label>日期</label>
-          <input type="text" placeholder="请输入日期" v-model="date" />
+          <!-- <input type="text" placeholder="请输入日期" v-model="date" /> -->
+          <idatetime></idatetime>
         </div>
 
         <div class="form__item">
@@ -138,24 +139,4 @@ span.tip {
   border: 1px solid #96bda8;
 }
 
-::-webkit-input-placeholder {
-  font-size: 14px;
-  /* WebKit browsers */
-  color: #999;
-}
-:-moz-placeholder {
-  font-size: 14px;
-  /* Mozilla Firefox 4 to 18 */
-  color: #999;
-}
-::-moz-placeholder {
-  font-size: 14px;
-  /* Mozilla Firefox 19+ */
-  color: #999;
-}
-:-ms-input-placeholder {
-  font-size: 14px;
-  /* Internet Explorer 10+ */
-  color: #999;
-}
 </style>
