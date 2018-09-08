@@ -7,10 +7,6 @@
     </Top>
 
     <div class="schedule">
-      <!-- <div class="schedule_add" v-if="isEmpty">
-        <i class="iconfont icon-add"></i>
-        <span class="tip">添加日程</span>
-      </div> -->
 
       <div class="form">
         <div class="form__item">
@@ -21,7 +17,7 @@
         <div class="form__item">
           <label>日期</label>
           <!-- <input type="text" placeholder="请输入日期" v-model="date" /> -->
-          <idatetime></idatetime>
+          <idatetime :day.sync="date"></idatetime>
         </div>
 
         <div class="form__item">
