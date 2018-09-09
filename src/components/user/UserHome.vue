@@ -27,7 +27,7 @@
               :key="colIndex" 
               :class="{not_this_month: !isThisMonth(col._d), 'high': col.high, 'medium': col.medium, 'low': col.low}" 
               v-for="(col, colIndex) in row"
-              @click="onMousedown(rowIndex, colIndex)"
+              @click="onMousedown(col)"
             >
               <span class="dayLabel">
                 {{col._d.getDate()}}
@@ -59,6 +59,9 @@
             <li v-for="col in rightSideData" :key="col.id">
               <span :class="rightSideClass(col.level)"></span>
               &nbsp;{{col.title}}</li>
+              <div class="form__item" style="text-align: center; margin-top: 16px;">
+                <input type="button" value="新增日程" />
+              </div>
           </ol>
 
         </v-touch>
@@ -107,10 +110,13 @@ export default {
     isToday (date) {
       return date.toDateString() === new Date().toDateString()
     },
-    onMousedown (rowIndex, colIndex) {
+    onMousedown (col) {
+      if (!this.isThisMonth(col._d)) {
+        return
+      }
       // this.showDialog = true
-      if (typeof this.days[rowIndex][colIndex].data !== 'undefined') {
-        this.rightSideData = this.days[rowIndex][colIndex].data
+      if (typeof col.data !== 'undefined') {
+        this.rightSideData = col.data
         this.rightSide.overlay = true
         this.showSideMask = true
       } else {
@@ -164,6 +170,9 @@ export default {
       for (let i = 0; i < this.days.length; i++) {
         for (let j = 0; j < this.days[i].length; j++) {
           let d = this.days[i][j]._d
+          if (!this.isThisMonth(d)) {
+            continue
+          }
           if (parseInt(10 * Math.random()) / 2 == 0) {
             this.days[i][j].high = true
             this.days[i][j].data = [

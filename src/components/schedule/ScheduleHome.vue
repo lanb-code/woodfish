@@ -89,50 +89,5 @@ span.tip {
   padding: 16px;
 }
 
-.schedule .schedule_add {
-}
-
-.form__item {
-  margin-bottom: 16px;
-}
-
-.form__item label {
-  float: left;
-  display: block;
-  padding: 9px 15px;
-  width: 80px;
-  font-size: 14px;
-  text-align: right;
-}
-
-.form__item input,
-.form__item textarea,
-.form__item select {
-  padding: 8px;
-  border: 1px solid #e6e6e6;
-  transition: all 0.3s;
-  border-radius: 2px;
-}
-
-.form__item input[type="button"],
-.form__item input[type="submit"] {
-  background-color: #ffffff;
-}
-
-.form__item input[type="button"]:hover,
-.form__item input[type="submit"]:hover {
-  background-color: #96bda8;
-  color: #ffffff;
-}
-
-.form__item textarea {
-  resize: none;
-}
-
-.form__item input:focus,
-.form__item textarea:focus,
-.form__item select:focus {
-  border: 1px solid #96bda8;
-}
-
+.schedule .schedule_add {}
 </style>

@@ -30,7 +30,7 @@ export default {
 </script>
 
 <style scoped>
-@-webkit-keyframes amt-modal-in {
+@-webkit-keyframes dialog__ani--run {
   0% {
     opacity: 0;
     -webkit-transform: scale3d(0.5, 0.5, 1);
@@ -44,7 +44,7 @@ export default {
   }
 }
 
-@keyframes amt-modal-in {
+@keyframes dialog__ani--run {
   0% {
     opacity: 0;
     -webkit-transform: scale3d(0.5, 0.5, 1);
@@ -76,9 +76,10 @@ export default {
   backface-visibility: hidden;
   -webkit-perspective: 1000px;
   perspective: 1000px;
-  -webkit-animation: amt-modal-in 0.3s ease-out;
-  animation: amt-modal-in 0.3s ease-out;
+  -webkit-animation: dialog__ani--run 0.3s ease-out;
+  animation: dialog__ani--run 0.3s ease-out;
   padding: 16px;
+  border-radius: 2px;
 }
 
 .dialog__mask {

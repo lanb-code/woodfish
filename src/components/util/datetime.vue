@@ -62,7 +62,6 @@ export default {
     selectDay: function (date) {
       if (!this.isThisMonth(date)) return
       this.$emit('update:day', df(date, 'YYYY-MM-DD'))
-      console.log(this.day)
       this.show = false
     },
     isThisMonth (date) {
